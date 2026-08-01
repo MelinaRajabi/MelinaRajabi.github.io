@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melina Rajabi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1B2140;
+    --navy-soft: #2A3157;
+    --paper: #EDEDF2;
+    --paper-warm: #E7E6ED;
+    --ink: #23223A;
+    --indigo: #4A5A99;
+    --gold: #C9A227;
+    --seal: #A73B44;
+    --line: #C9C8D6;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Literata', serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  .eyebrow {
+    font-family: 'Literata', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 4.5rem 1.75rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-top {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .photo-frame {
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+    background: var(--navy-soft);
+  }
+  .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-frame.empty::after {
+    content: 'Add photo.jpg';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 0.6rem;
+    font-family: 'Literata', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    color: #8D8CA6;
+  }
+
+  .hero-text { min-width: 0; }
+  .hero-text .eyebrow { margin: 0 0 0.6rem; }
+  .hero-text h1 { margin: 0; }
+
+  @media (max-width: 560px) {
+    .hero-top { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    .photo-frame { width: 92px; height: 92px; }
+  }
+
+  .hero-inner { max-width: 900px; margin: 0 auto; }
+  .hero .eyebrow { color: var(--gold); }
+
+  .hero h1 {
+    font-family: 'Literata', serif;
+    margin: 0;
+    line-height: 0.95;
+  }
+  .hero h1 .first {
+    display: block;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(2.4rem, 9vw, 4.6rem);
+    color: var(--paper);
+    opacity: 0.85;
+  }
+  .hero h1 .last {
+    display: block;
+    font-weight: 600;
+    font-style: normal;
+    font-size: clamp(3.4rem, 13vw, 6.6rem);
+    letter-spacing: -0.01em;
+  }
+
+  .signature {
+    width: 100%;
+    max-width: 620px;
+    height: auto;
+    margin: 1.75rem 0 1.5rem -4px;
+    display: block;
+  }
+  .signature path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .signature .circuit { stroke: var(--indigo); stroke-width: 2; }
+  .signature .pad { fill: var(--indigo); }
+  .signature .ink-back { stroke: var(--gold); stroke-width: 5; opacity: 0.35; }
+  .signature .ink { stroke: var(--gold); stroke-width: 2.25; }
+
+  .draw {
+    stroke-dasharray: 1400;
+    stroke-dashoffset: 1400;
+    animation: draw 2.2s ease-out 0.3s forwards;
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .draw { animation: none; stroke-dashoffset: 0; }
+  }
+
+  .hero .tag {
+    font-size: 1.05rem;
+    max-width: 40ch;
+    color: #D6D6E4;
+    margin: 0;
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section { padding: 4.5rem 1.75rem; }
+  .section-inner { max-width: 900px; margin: 0 auto; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about { background: var(--paper); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .pull {
+    font-family: 'Literata', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    line-height: 1.3;
+    margin: 0 0 1.25rem;
+    color: var(--navy);
+  }
+  .about p.body-text { font-size: 1.05rem; max-width: 52ch; margin: 0 0 1rem; }
+  .about p.body-text:last-child { margin-bottom: 0; }
+
+  .facts {
+    border-left: 1px solid var(--line);
+    padding-left: 1.5rem;
+  }
+  .facts-title {
+    font-family: 'Literata', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    margin: 0 0 0.9rem;
+  }
+  .facts-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .facts-list li {
+    font-size: 0.98rem;
+    margin: 0 0 0.7rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .facts-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .facts-list li:last-child { margin-bottom: 0; }
+
+  /* ---------- INTERESTS ---------- */
+  .interests { background: var(--paper-warm); }
+  .interests .eyebrow { color: var(--indigo); margin: 0 0 0.5rem; }
+  .interests h2 {
+    font-family: 'Literata', serif;
+    font-weight: 600;
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    margin: 0 0 2.5rem;
+    color: var(--navy);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 1.6rem 1.3rem;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .card:hover { transform: translateY(-4px); border-color: var(--gold); }
+  .card svg { width: 34px; height: 34px; stroke: var(--navy); fill: none; stroke-width: 1.5; margin-bottom: 1rem; }
+  .card .t {
+    font-family: 'Literata', serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .card .d { font-size: 0.88rem; color: #4E4D63; margin: 0; }
+
+  /* ---------- CONTACT ---------- */
+  .contact {
+    background: var(--navy);
+    color: var(--paper);
+    text-align: center;
+  }
+  .seal {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.75rem;
+    position: relative;
+  }
+  .seal::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--seal);
+    border-radius: 50%;
+    top: 10px;
+    right: 14px;
+  }
+  .seal span {
+    font-family: 'Literata', serif;
+    font-style: italic;
+    font-size: 2.1rem;
+    color: var(--paper);
+  }
+  .contact-email {
+    font-size: 1rem;
+    margin: 0 0 1.75rem;
+  }
+  .contact-email a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+  .contact-email a:hover { color: var(--gold); }
+
+  .social-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .social-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--paper);
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .social-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .social-icon:hover { background: var(--gold); color: var(--navy); }
+
+  footer {
+    font-family: 'Literata', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: #8D8CA6;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--navy);
+  }
+
+  @media (max-width: 720px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .facts { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 1.5rem; }
+    .card-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 420px) {
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-top">
+        <div class="photo-frame">
+          <img src="photo.jpg" alt="Melina Rajabi" onerror="this.style.display='none'; this.parentElement.classList.add('empty')">
+        </div>
+        <div class="hero-text">
+          <p class="eyebrow">Sharif University of Technology &middot; Electrical Engineering</p>
+          <h1><span class="first">Melina</span><span class="last">Rajabi</span></h1>
+        </div>
+      </div>
+
+      <svg class="signature" viewBox="0 0 620 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path class="circuit draw" d="M 0 60 L 35 60 L 35 30 L 70 30 L 70 80 L 105 80 L 105 55 L 140 55 L 140 60 L 175 60" />
+        <circle class="pad" cx="35" cy="30" r="3.5" />
+        <circle class="pad" cx="70" cy="80" r="3.5" />
+        <circle class="pad" cx="105" cy="55" r="3.5" />
+        <circle class="pad" cx="175" cy="60" r="3.5" />
+        <path class="ink-back draw" d="M 175 60 C 230 60 220 15 270 25 C 320 35 300 90 360 78 C 410 68 400 20 460 40 C 510 57 500 85 560 55 C 585 42 595 60 620 48" />
+        <path class="ink draw" d="M 175 60 C 230 60 220 15 270 25 C 320 35 300 90 360 78 C 410 68 400 20 460 40 C 510 57 500 85 560 55 C 585 42 595 60 620 48" />
+      </svg>
+
+      <p class="tag">Exploring how engineering can be used to understand the body and the brain.</p>
+    </div>
+  </header>
+
+  <section class="about">
+    <div class="section-inner about-grid">
+      <div class="reveal">
+        <p class="body-text">I'm an Electrical Engineering student at Sharif University of Technology, also pursuing a minor in Physics, driven by curiosity across a wide range of scientific fields.</p>
+        <p class="body-text">My main interest lies in bioelectrics — biomedical image and signal processing, computational neuroscience, and bioelectronics. I'm especially drawn to applying engineering methods to the analysis of biological phenomena.</p>
+      </div>
+      <div class="facts reveal">
+        <p class="facts-title">Research interests</p>
+        <ul class="facts-list">
+          <li>Biomedical image processing</li>
+          <li>Biomedical signal processing</li>
+          <li>Computational neuroscience</li>
+          <li>Bioelectronics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="interests">
+    <div class="section-inner">
+      <p class="eyebrow reveal">Outside class</p>
+      <div class="card-grid reveal">
+
+        <div class="card">
+          <svg viewBox="0 0 34 34"><ellipse cx="17" cy="10" rx="8" ry="9"/><line x1="17" y1="19" x2="17" y2="30"/><line x1="12" y1="30" x2="22" y2="30"/><circle cx="26" cy="6" r="1.4" fill="currentColor" stroke="none"/></svg>
+          <span class="t">Badminton</span>
+          <p class="d">A fast-paced break from problem sets.</p>
+        </div>
+
+        <div class="card">
+          <svg viewBox="0 0 34 34"><rect x="3" y="8" width="28" height="18" rx="1"/><line x1="8" y1="8" x2="8" y2="26"/><line x1="13" y1="8" x2="13" y2="26"/><line x1="18" y1="8" x2="18" y2="26"/><line x1="23" y1="8" x2="23" y2="26"/><line x1="28" y1="8" x2="28" y2="26"/></svg>
+          <span class="t">Piano</span>
+          <p class="d">The one grid where being slightly off-beat is fine.</p>
+        </div>
+
+        <div class="card">
+          <svg viewBox="0 0 34 34"><path d="M 6 28 L 24 10 L 29 5 L 29 10 L 24 15 Z"/><line x1="6" y1="28" x2="4" y2="30"/></svg>
+          <span class="t">Persian Calligraphy</span>
+          <p class="d">An art of patience and precise form.</p>
+        </div>
+
+        <div class="card">
+          <svg viewBox="0 0 34 34"><path d="M 3 8 C 9 5 13 5 17 8 L 17 27 C 13 24 9 24 3 27 Z"/><path d="M 31 8 C 25 5 21 5 17 8 L 17 27 C 21 24 25 24 31 27 Z"/></svg>
+          <span class="t">Reading</span>
+          <p class="d">A way to think about things outside my field.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="section-inner reveal">
+      <div class="seal"><span>M</span></div>
+      <p class="contact-email">Email: <a href="mailto:melinarajabi82@gmail.com">melinarajabi82@gmail.com</a></p>
+      <div class="social-row">
+        <a class="social-icon" href="mailto:melinarajabi82@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M4 6.5 L12 13 L20 6.5"/></svg>
+        </a>
+        <a class="social-icon" href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1.5"/><line x1="7.5" y1="10" x2="7.5" y2="17"/><circle cx="7.5" cy="6.7" r="0.9" fill="currentColor" stroke="none"/><path d="M11.5 17 L11.5 10 M11.5 13 C11.5 11 16.5 11 16.5 13 L16.5 17"/></svg>
+        </a>
+        <a class="social-icon" href="#" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 3 C7 3 3.3 6.7 3.3 11.7 C3.3 15.7 5.9 19.1 9.5 20.3 C10 20.4 10.1 20.1 10.1 19.9 L10.1 18.1 C7.6 18.6 7.1 17.1 7.1 17.1 C6.7 16.1 6.1 15.9 6.1 15.9 C5.3 15.3 6.2 15.3 6.2 15.3 C7.1 15.4 7.5 16.2 7.5 16.2 C8.3 17.6 9.6 17.2 10.1 17 C10.2 16.4 10.4 16 10.7 15.7 C8.7 15.5 6.7 14.7 6.7 11.3 C6.7 10.3 7 9.5 7.6 8.9 C7.5 8.6 7.2 7.7 7.7 6.5 C7.7 6.5 8.5 6.2 10.1 7.3 C10.8 7.1 11.5 7 12.2 7 C12.9 7 13.6 7.1 14.3 7.3 C15.9 6.2 16.7 6.5 16.7 6.5 C17.2 7.7 16.9 8.6 16.8 8.9 C17.4 9.5 17.7 10.3 17.7 11.3 C17.7 14.7 15.7 15.5 13.7 15.7 C14 16 14.3 16.6 14.3 17.5 L14.3 19.9 C14.3 20.1 14.4 20.4 14.9 20.3 C18.5 19.1 21.1 15.7 21.1 11.7 C21.1 6.7 17.3 3 12 3 Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>Melina Rajabi &middot; Sharif University of Technology</footer>
+
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
